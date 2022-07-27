@@ -813,3 +813,4 @@ C:\Users\willi\source\repos\FirstBlazorApp\FirstBlazorApp\obj\Debug\net6.0\First
 C:\Users\willi\source\repos\FirstBlazorApp\FirstBlazorApp\obj\Debug\net6.0\refint\FirstBlazorApp.dll
 C:\Users\willi\source\repos\FirstBlazorApp\FirstBlazorApp\obj\Debug\net6.0\FirstBlazorApp.pdb
 C:\Users\willi\source\repos\FirstBlazorApp\FirstBlazorApp\obj\Debug\net6.0\ref\FirstBlazorApp.dll
+C:\Users\willi\source\repos\FirstBlazorApp\FirstBlazorApp\obj\Debug\net6.0\scopedcss\Shared\ShoppingListLayout.razor.rz.scp.css

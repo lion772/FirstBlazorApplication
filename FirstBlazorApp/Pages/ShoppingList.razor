@@ -1,20 +1,44 @@
-﻿@page "/shoppinglist";
+﻿@page "/shoppinglist"
+@layout ShoppingListLayout
 @using FirstBlazorApp.Data
 
 <PageTitle>@title</PageTitle>
 <h3>Shopping List</h3>
 <br />
-<input type="text" placeholder="Grocery name" @bind="groceryName" />
-<input type="number" placeholder="Grocery price" @bind="groceryPrice" />
-<button type="submit" class="btn btn-primary" @onclick="AddGrocery">Add Grocery</button>
 
-<ul>
+<EditForm Model="@grocery" OnSubmit="AddGrocery">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <p>
+        <label>
+            Name:
+            <InputText @bind-Value="grocery.Name" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Price:
+            <InputNumber @bind-Value="grocery.Price" />
+        </label>
+    </p>
+
+    <button type="submit" class="btn btn-primary">Add Grocery</button>
+
+</EditForm>
+
+<table class="table table-sm">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
     @foreach (var grocery in groceries)
     {
-        <li><p>@grocery.Name costs @grocery.Price</p></li>
+        <Item GroceryItem="@grocery" onGroceryPriceIncreased="onGroceryPriceIncreased"></Item>
 
     }
-</ul>
+</table>
 <h1>Total Price of List: (@groceries.Sum(grocery => grocery.Price)) Total Price:@sumPrices</h1>
 
 
@@ -24,7 +48,7 @@
     private string groceryName = "";
     private float groceryPrice;
     private float sumPrices = 0;
-
+    private Grocery grocery = new();
     private List<Grocery> groceries = new List<Grocery>()
     {
         new Grocery(){Name="Rice", Price=2},
@@ -34,14 +58,20 @@
 
     private void AddGrocery()
     {
-        if (!string.IsNullOrWhiteSpace(groceryName) && groceryPrice > 0)
-        {
-            groceries.Add(new Grocery() { Name = groceryName, Price = groceryPrice });
-            sumPrices += groceryPrice;
-            groceryName = string.Empty;
-            groceryPrice = 0;
-        }
+        groceries.Add(grocery);
+        grocery = new();
+        UpdateTotalAmount();
+    }
 
+    public void UpdateTotalAmount()
+    {
+        sumPrices = groceries.Sum(item => item.Price);
+
+    }
+
+    public void onGroceryPriceIncreased()
+    {
+        UpdateTotalAmount();
     }
 
 }

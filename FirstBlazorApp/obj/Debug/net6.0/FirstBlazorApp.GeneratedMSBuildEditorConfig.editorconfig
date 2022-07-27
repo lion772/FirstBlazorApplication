@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvcHBpbmdMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/willi/source/repos/FirstBlazorApp/FirstBlazorApp/Shared/Item.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEl0ZW0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/willi/source/repos/FirstBlazorApp/FirstBlazorApp/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -57,3 +61,7 @@ build_metadata.AdditionalFiles.CssScope = b-6v4rzgve31
 [C:/Users/willi/source/repos/FirstBlazorApp/FirstBlazorApp/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-z40z7u3kjb
+
+[C:/Users/willi/source/repos/FirstBlazorApp/FirstBlazorApp/Shared/ShoppingListLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNob3BwaW5nTGlzdExheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-6319us39bo

@@ -7,29 +7,31 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
+@if (forecast == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+    var today = DateTime.Today;
+    <h4>Today: @today.ToShortDateString()</h4>
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Temp</th>
+                <th>Tempmin</th>
+                <th>Description</th>
+                <th>Windspeed</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in forecast.Days)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@forecast.Temp</td>
+                    <td>@forecast.Tempmin</td>
+                    <td>@forecast.Description</td>
+                    <td>@forecast.Windspeed</td>
                 </tr>
             }
         </tbody>
@@ -37,21 +39,32 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    //Declaring an array of forecasts, where our results from the API call will be stored
+    private WeatherForecast? forecast;
 
+    //When this component is initialised, an asyncronous call is made to the whether JSON file (sanple data whether)
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        //HTTP client is initialised with the same base URL as our app (HostEnvironment.BaseAddress in Program.cs)
+        forecast = await Http.GetFromJsonAsync<WeatherForecast>("Berlin");
     }
 
-    public class WeatherForecast
+    public partial class WeatherForecast : Days
     {
-        public DateTime Date { get; set; }
+        public string? ResolvedAddress { get; set; }
+        public string? Address { get; set; }
+        public string? Timezone { get; set; }
+        public Days[]? Days { get; set; }
+    }
 
-        public int TemperatureC { get; set; }
+    public class Days
+    {
+        public string? Temp { get; set; }
+        public string? Tempmin { get; set; }
+        public string? Feelslikemax { get; set; }
+        public string? Feelslikemin { get; set; }
+        public string? Description { get; set; }
+        public string? Windspeed { get; set; }
 
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 }
